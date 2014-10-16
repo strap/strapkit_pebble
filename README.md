@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/strap/strapkit_pebble.png?label=ready&title=Ready)](https://waffle.io/strap/strapkit_pebble)
 strapkit_pebble
 ===============
 
