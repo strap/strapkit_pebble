@@ -7,5 +7,6 @@ appName = sys.argv[2]
 with open(appInfo,'r') as infile:
 	data = json.load(infile)
 	data['shortName'] = appName
+	data['longName'] = appName
 with open(appInfo,'w') as outfile:
 	json.dump(data,outfile)
