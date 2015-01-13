@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -106,6 +106,32 @@ function PebbleBuild (){
 	cd - > /dev/null
 }
 
+function CreateBuildDir (){
+	local projRootDir=$1
+
+	if [ ! -d "$projRootDir/build/" ]; then
+		mkdir "$projRootDir/build/"
+		if [ ! -d "$projRootDir/build/pebble" ]; then
+			mkdir "$projRootDir/build/pebble"
+		fi
+	fi
+}
+
+function ReturnPBW (){
+	local projRootDir=$1
+	local pebbleProjDir=$2
+	local projName=$3
+
+	CreateBuildDir $projRootDir
+
+	cd $pebbleProjDir
+	if [ -d build ]; then
+		local pbw="./build/$projName.pbw"
+		cp -p $pbw "$projRootDir/build/pebble"
+	fi
+		
+}
+
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
 PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
@@ -140,6 +166,8 @@ fontResources="$pblProj/resources/fonts"
 $UpdateMediaResources $appInfo $imageResources $fontResources
 
 PebbleBuild $pblProj
+
+ReturnPBW $PROJECT_ROOT $pblProj $PROJECT_NAME
 
 # echo "PROJECT_PATH $PROJECT_PATH"
 # echo "PROJECT_NAME $PROJECT_NAME"
