@@ -97,7 +97,7 @@ mkdir -p "$PROJECT_PATH"
 
 # here, make pebble build new project then inject pebblejs + strapkit core instead of line 100
 pebble new-project "$PROJECT_PATH/$PROJECT_NAME"
-cp -r "$PROJECT_TEMPLATE_DIR/strapkitWithPebbleJs/src" "$PROJECT_PATH/$PROJECT_NAME"
+cp -r "$BINDIR/templates/strapkitWithPebbleJs/src" "$PROJECT_PATH/$PROJECT_NAME"
 
 # if [ $INCLUDE_METRICS == 1 ]; then
 # cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__SM" "$PROJECT_PATH/$PROJECT_NAME"
