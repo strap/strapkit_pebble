@@ -110,9 +110,9 @@ function CreateBuildDir (){
 	local projRootDir=$1
 
 	if [ ! -d "$projRootDir/build/" ]; then
-		mkdir "$projRootDir/build/"
+		mkdir -v "$projRootDir/build/"
 		if [ ! -d "$projRootDir/build/pebble" ]; then
-			mkdir "$projRootDir/build/pebble"
+			mkdir -v "$projRootDir/build/pebble"
 		fi
 	fi
 }
@@ -125,11 +125,13 @@ function ReturnPBW (){
 	CreateBuildDir $projRootDir
 
 	cd $pebbleProjDir
-	if [ -d build ]; then
+	if [ -d "build" ]; then
 		local pbw="./build/$projName.pbw"
-		cp -p $pbw "$projRootDir/build/pebble"
+		if [ -d "$pbw" ]; then
+			cp -p $pbw "$projRootDir/build/pebble"
+		fi
 	fi
-		
+	cd - > /dev/null
 }
 
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
