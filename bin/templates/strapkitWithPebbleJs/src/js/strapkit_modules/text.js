@@ -5,7 +5,7 @@ var TextView = function(config){
 	View.call(this,config);
 	this._config = config || {};
 	this._align = config.align || 'center';
-	this._position = config.position || new Vector2(0, 50),
+	this._position = config.position || new Vector2(0, 50);
 	this._size = config.size || new Vector2(144, 30);
 	this._text = config.text || '';
 	this._pebbleText = new UI.Text({
@@ -15,7 +15,7 @@ var TextView = function(config){
     	text: this._text,
     	textAlign: this._align
   	});
-}
+};
 
 
 TextView.prototype.getJSON = function() {

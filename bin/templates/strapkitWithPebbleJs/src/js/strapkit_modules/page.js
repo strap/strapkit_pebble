@@ -4,7 +4,7 @@ var Page = function(views){
 	this.pageOpen = false;
 	this.views = [];
 	if (views){
-		if(typeof views === 'Array') {
+		if(views.length) {
 			this.views = views;
 		} else if (typeof views === 'object') {
 			this.views.push(views);
