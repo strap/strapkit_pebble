@@ -134,31 +134,49 @@ function ReturnPBW (){
 	cd - > /dev/null
 }
 
+# global useful variables
 STRAPKIT_PATH=$( cd "$( dirname "$0" )" && pwd -P)
+
+# PROJECT_PATH /home/marcelle/Code/strap/experiment/new/platforms/pebble
 PROJECT_PATH="$(dirname "$STRAPKIT_PATH")"
+
+# PROJECT_ROOT /home/marcelle/Code/strap/experiment/new
 PROJECT_ROOT="$(dirname $(dirname "$PROJECT_PATH"))"
+
+# PROJECT_NAME new
 PROJECT_NAME=$( basename $( pwd -P ) )
+
 # PROJECT_NAME=$( node $STRAPKIT_PATH/aux/ReadProjectName.js $PROJECT_ROOT/config.xml )
+
+# pblProj /home/marcelle/Code/strap/experiment/new/platforms/pebble/new
 pblProj="$PROJECT_PATH/$PROJECT_NAME"
 
+# update appinfo.json for pebble with project name, remove generic template name
 # appInfo="$pblProj/appinfo.json"
 # UpdateAppName="$STRAPKIT_PATH/aux/UpdateAppName"
 # $UpdateAppName $appInfo $PROJECT_NAME
 
+# sync code between top-level project and internal pebble specific code
+#
+# indexDir /home/marcelle/Code/strap/experiment/new/js/
+# appDir /home/marcelle/Code/strap/experiment/new/platforms/pebble/new/src/js/
 indexDir="$PROJECT_ROOT/js/"
 appDir="$pblProj/src/js/"
 SyncDirContents $indexDir $appDir
 
+# rename main-file within pebble if discrepancy between top-level and pebble main-file name
 mainfile="app.js"
 if [ ! -z ${1+x} ];then # if($1)
 	mainfile=$(basename $1)
 fi
 RenameToAppJs $mainfile $appDir
 
+# sync assets between top-level project and internal pebble specific assets
 platformResources="$PROJECT_ROOT/resources/pebble/"
 appResources="$pblProj/resources/"
 SyncDirContents $platformResources $appResources
 
+# update appinfo with media resources
 appInfo="$pblProj/appinfo.json"
 UpdateMediaResources="$STRAPKIT_PATH/aux/UpdateMediaResources"
 # imageResources="$pblProj/resources/images"
@@ -169,18 +187,5 @@ $UpdateMediaResources $appInfo $imageResources $fontResources
 
 PebbleBuild $pblProj
 
+# send built pebble proj back up to top-level project dir
 ReturnPBW $PROJECT_ROOT $pblProj $PROJECT_NAME
-
-# echo "PROJECT_PATH $PROJECT_PATH"
-# echo "PROJECT_NAME $PROJECT_NAME"
-# echo "PROJECT_ROOT $PROJECT_ROOT"
-# echo "indexDir $indexDir"
-# echo "pblProj $pblProj"
-# echo "appDir $appDir"
-
-# PROJECT_PATH /home/marcelle/Code/strap/experiment/new/platforms/pebble
-# PROJECT_ROOT /home/marcelle/Code/strap/experiment/new
-# PROJECT_NAME new
-# indexDir /home/marcelle/Code/strap/experiment/new/js/
-# pblProj /home/marcelle/Code/strap/experiment/new/platforms/pebble/new
-# appDir /home/marcelle/Code/strap/experiment/new/platforms/pebble/new/src/js/
