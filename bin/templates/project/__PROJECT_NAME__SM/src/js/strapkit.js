@@ -150,8 +150,8 @@ var APP = {};
 
 var userInterface = {
     Vibe : function(config){ return require('ui/vibe'); },
-    View : function(config){ return new UI.Card(config); },
-    Menu : function(config){ return new UI.Menu(config); },
+    Card : function(config){ return new UI.Card(config); },
+    ListView : function(config){ return new UI.Menu(config); },
     Window : function(config){ return new UI.Window(config); },
     Text : function(config){ return new UI.Text(config); }
 }
@@ -179,3 +179,38 @@ module.exports = {
         }
     }
 };
+
+// var APP = {};
+
+// var userInterface = {
+//     ListView : function(config){ return new ListView(config)},
+//     Card : function(config){ return new Card(config); },
+//     Action : function(config){ return new Action(config); },
+//     Page : function(config){ return new Page(config); },
+//     Text : function(config) { return new Text(config); },
+//     Image : function(config) { return new Image(config); }
+// }
+
+// module.exports = {
+//     'Coord': function(X,Y){ return new Vector2(X,Y); },
+//     'UI' : userInterface,
+//     'HttpClient' : function() { return require('httpClient')},
+//     'Sensors' : {
+//         'Accel' : function(){ return Accel; }
+//     },
+//     'Settings' : function(){ return require('settings'); },
+//     'Metrics' : { 
+//         'Init' : function(params){
+//             APP = strap_api_clone(params);
+//             if( APP ) {
+//                 if( Accel ) { strap_api_init_accel(Accel, APP); }
+//                 strap_api_init(APP);
+//             }
+//         },
+//         'Log' : function(e){
+//             var params = strap_api_clone(APP);
+//             params['action_url'] = e;
+//             strap_api_log(params);
+//         }
+//     }
+// };
