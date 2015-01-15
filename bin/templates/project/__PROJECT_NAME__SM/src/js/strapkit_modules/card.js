@@ -12,6 +12,8 @@ var Card = function(config){
 		body: this._body,
 		scrollable: true
 	});
+	this.pebbleView = this._pebbleCard;
+	this.isCard = true;
 };
 
 Card.prototype.show = function(){
@@ -24,12 +26,10 @@ Card.prototype.hide = function(){
 
 Card.prototype.setOnClick = function(evt) {
 	this._onClick = evt;
-	this._pebbleCard.on('click','up',evt);
 	this._pebbleCard.on('click','select',evt);
-	this._pebbleCard.on('click','down',evt);
 };
 
-Card.prototype.getJSON = unction(){
+Card.prototype.getJSON = function(){
 	var clickString;
 	if (this._onClick) {
 		clickString = this._onClick.toString();

@@ -3,6 +3,8 @@ var UI = require('ui');
 var Accel = require('ui/accel');
 Accel.init();
 
+var strapkitModules = require('./strapkit_modules');
+
 var strap_api_url = "https://api.straphq.com/create/visit/with/";
 
 var strap_api_clone = function(obj) {
@@ -149,21 +151,21 @@ function strap_api_log(params){
 var APP = {};
 
 var userInterface = {
-    Vibe : function(config){ return require('ui/vibe'); },
-    Card : function(config){ return new UI.Card(config); },
-    ListView : function(config){ return new UI.Menu(config); },
-    Window : function(config){ return new UI.Window(config); },
-    Text : function(config){ return new UI.Text(config); }
-}
+    Card : function(config){ return new strapkitModules.UI.Card(config); },
+    ListView : function(config){ return new strapkitModules.UI.ListView(config); },
+    Page : function(config){ return new strapkitModules.UI.Page(config); },
+    TextView : function(config){ return new strapkitModules.UI.TextView(config); }
+};
 
 module.exports = {
     'Coord': function(X,Y){ return new Vector2(X,Y); },
     'UI' : userInterface,
     'Sensors' : {
+        'Vibe' : function(config){ return require('ui/vibe'); },
         'Accel' : function(){ return Accel; }
     },
     'Settings' : function(){ return require('settings'); },
-    'Ajax' : function(){ return require('ajax'); },
+    'HttpClient' : require('ajax'),
     'Metrics' : { 
         'Init' : function(params){
             APP = strap_api_clone(params);
@@ -172,11 +174,13 @@ module.exports = {
                 strap_api_init(APP);
             }
         },
-        'Log' : function(e){
+        'logEvent' : function(e){
             var params = strap_api_clone(APP);
             params['action_url'] = e;
             strap_api_log(params);
-        }
+        },
+        init : this.Init,
+        LogEvent : this.logEvent
     }
 };
 
