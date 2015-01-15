@@ -125,10 +125,11 @@ function ReturnPBW (){
 	CreateBuildDir $projRootDir
 
 	cd $pebbleProjDir
+	echo $pebbleProjDir
 	if [ -d "build" ]; then
-		local pbw="./build/$projName.pbw"
+		local pbw="$pebbleProjDir/build/$projName.pbw"
 		if [ -d "$pbw" ]; then
-			cp -p $pbw "$projRootDir/build/pebble"
+			cp -p $pbw "$projRootDir/build/pebble/$projName.pbw"
 		fi
 	fi
 	cd - > /dev/null
