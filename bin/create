@@ -95,16 +95,16 @@ fi
 
 mkdir -p "$PROJECT_PATH"
 
-# here, make pebble build new project 
-pebble new-project "$PROJECT_PATH/$PROJECT_NAME"
-# then inject pebblejs + strapkit core
-rm -rf "$PROJECT_PATH/$PROJECT_NAME/src"
-cp -r "$BINDIR/templates/strapkitWithPebbleJs/src" "$PROJECT_PATH/$PROJECT_NAME"
-rm -rf "$PROJECT_PATH/$PROJECT_NAME/resources"
-cp -r "$BINDIR/templates/strapkitWithPebbleJs/resources" "$PROJECT_PATH/$PROJECT_NAME"
+# # here, make pebble build new project 
+# pebble new-project "$PROJECT_PATH/$PROJECT_NAME"
+# # then inject pebblejs + strapkit core
+# rm -rf "$PROJECT_PATH/$PROJECT_NAME/src"
+# cp -r "$BINDIR/templates/strapkitWithPebbleJs/src" "$PROJECT_PATH/$PROJECT_NAME"
+# rm -rf "$PROJECT_PATH/$PROJECT_NAME/resources"
+# cp -r "$BINDIR/templates/strapkitWithPebbleJs/resources" "$PROJECT_PATH/$PROJECT_NAME"
 
 # if [ $INCLUDE_METRICS == 1 ]; then
-# cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__SM" "$PROJECT_PATH/$PROJECT_NAME"
+cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__SM" "$PROJECT_PATH/$PROJECT_NAME"
 # else 
 # cp -r "$PROJECT_TEMPLATE_DIR/__PROJECT_NAME__PEBBLEJS" "$PROJECT_PATH/$PROJECT_NAME"
 # fi
@@ -114,7 +114,7 @@ R=$PROJECT_PATH/$PROJECT_NAME
 # mv "$R/src/__PROJECT_NAME__PEBBLEJS.c" "$R/src/$PROJECT_NAME.c"
 
 "$BINDIR/replaces" "$R/appinfo.json"     __PROJECT_NAME__PEBBLEJS "$PROJECT_NAME"
-# "$BINDIR/replaces" "$R/appinfo.json"     __UUID__ `uuidgen`
+"$BINDIR/replaces" "$R/appinfo.json"     __UUID__ `uuidgen`
 
 # Finally copy the scripts
 cp -r "$SCRIPT_TEMPLATE_DIR"/* "$PROJECT_PATH/"
