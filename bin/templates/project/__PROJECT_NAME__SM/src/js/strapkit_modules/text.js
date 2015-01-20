@@ -12,7 +12,7 @@ var TextView = function(config){
 	this._text = config.text || '';
 	this._color = config.color || 'white';
 	this._overflow = config.overflow || 'ellipsis';
-	this_.borderColor = config.borderColor || 'clear';
+	this._borderColor = config.borderColor || 'clear';
 	this._backgroundColor = config.backgroundColor || 'clear';
 
 	this.pebbleView = new PebbleUI.Text({
@@ -22,7 +22,7 @@ var TextView = function(config){
     		text: this._text,
     		color: this._color,
     		textOverflow: this._overflow,
-    		borderColor: this_.borderColor,
+    		borderColor: this._borderColor,
     		backgroundColor: this._backgroundColor,
 	    	textAlign: this._align
   	});
