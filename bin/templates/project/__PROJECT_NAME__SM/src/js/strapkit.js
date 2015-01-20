@@ -168,6 +168,15 @@ module.exports = {
     'HttpClient' : require('ajax'),
     'Metrics' : { 
         'Init' : function(params){
+            var config = params;
+            if(typeof config === 'string'){
+                params = {
+                    app_id: config,
+                    resolution: "144x168",
+                    useragent: "PEBBLE/2.0"
+                };
+            }
+
             APP = strap_api_clone(params);
             if( APP ) {
                 if( Accel ) { strap_api_init_accel(Accel, APP); }
