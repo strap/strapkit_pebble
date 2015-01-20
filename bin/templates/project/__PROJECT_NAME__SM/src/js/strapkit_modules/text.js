@@ -16,15 +16,15 @@ var TextView = function(config){
 	this._backgroundColor = config.backgroundColor || 'clear';
 
 	this.pebbleView = new PebbleUI.Text({
-    	position: this._position,
-    	size: this._size,
-    	font: 'gothic-24-bold',
-    	text: this._text,
-    	color: this._color,
-    	textOverflow: this._overflow,
-    	borderColor: this_.borderColor,
-    	backgroundColor: this._backgroundColor,
-    	textAlign: this._align
+	    	position: this._position,
+    		size: this._size,
+    		font: 'gothic-24-bold',
+    		text: this._text,
+    		color: this._color,
+    		textOverflow: this._overflow,
+    		borderColor: this_.borderColor,
+    		backgroundColor: this._backgroundColor,
+	    	textAlign: this._align
   	});
 };
 
