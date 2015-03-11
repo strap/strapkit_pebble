@@ -110,12 +110,12 @@ function PebbleBuild (){
 
 function CreateBuildDir (){
 	local projRootDir=$1
-
-	if [ ! -d "$projRootDir/build/" ]; then
-		mkdir -v "$projRootDir/build/"
-		if [ ! -d "$projRootDir/build/pebble" ]; then
-			mkdir -v "$projRootDir/build/pebble"
+	
+	if [ ! -d "$projRootDir/build/pebble" ]; then
+		if [ ! -d "$projRootDir/build/" ]; then
+			mkdir -v "$projRootDir/build/"
 		fi
+		mkdir -v "$projRootDir/build/pebble"
 	fi
 }
 
