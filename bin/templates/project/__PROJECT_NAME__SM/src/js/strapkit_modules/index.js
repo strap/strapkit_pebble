@@ -3,6 +3,6 @@ module.exports = {
 		Card : require('./card'),
 		ListView : require('./list'),
 		Page : require('./page'),
-		TextView : require('./text')
+		TextView : require('./text'),
 	}
 };

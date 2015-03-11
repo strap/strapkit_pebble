@@ -164,7 +164,20 @@ module.exports = {
         'Vibe' : function(config){ return require('ui/vibe'); },
         'Accel' : function(){ return Accel; }
     },
-    'Settings' : function(){ return require('settings'); },
+    'Settings' : function(){ return require('settings'); }, 
+    'Geolocation' : function(cb){
+    navigator.geolocation.getCurrentPosition(function(position){
+            lat = position.coords.latitude;
+            lng = position.coords.longitude; 
+         cb(null,{lat:lat, lng:lng});
+        },function(err){
+         cb(err,null);
+        },{
+            maximumAge: 50000,
+            timeout: 5000,
+            enableHighAccuracy: true 
+        });
+   },   
     'HttpClient' : require('ajax'),
     'Metrics' : { 
         'Init' : function(params){
